@@ -106,3 +106,11 @@ Contributions are welcome! Please submit your changes via:
 ## License
 
 This project is licensed under the GPL3.0 License - see the [LICENSE.txt](LICENSE.txt) file for details.
+
+
+## TODO
+
+- Improve performance when dealing with large directories
+- Improve filtering options (Currently the filter only will only detect files in the directory `sm` was called)
+- Add functionality to open EDITOR when pressing enter on a file
+- Add caching (file size caching is messy and often breaks everything, previous attemptys failed, I need to find a better way to implement it. (directory name caching?))
