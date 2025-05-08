@@ -239,9 +239,11 @@ impl Terminal {
             }
             KeyCode::Char('s') => {
                 self.sort_order = match self.sort_order.as_str() {
+                    "default" => "size".to_string(),
                     "size" => "name".to_string(),
                     "name" => "modified".to_string(),
-                    _ => "size".to_string(),
+                    "modified" => "default".to_string(),
+                    _ => "default".to_string(),
                 };
             }
             KeyCode::Char('r') => {

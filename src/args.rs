@@ -12,11 +12,11 @@ pub struct Args {
     pub path: String,
 
     /// Maximum depth to scan
-    #[arg(short, long, default_value_t = 2)]
+    #[arg(short, long, default_value_t = 1)]
     pub depth: usize,
 
-    /// Sort order (size, name, modified)
-    #[arg(short, long, default_value = "size", value_parser = validate_sort_order)]
+    /// Sort order (default, size, name, modified)
+    #[arg(short, long, default_value = "default", value_parser = validate_sort_order)]
     pub sort: String,
 
     /// Sort direction (asc, desc)
@@ -42,8 +42,8 @@ pub struct Args {
 
 fn validate_sort_order(s: &str) -> Result<String, String> {
     match s {
-        "size" | "name" | "modified" => Ok(s.to_string()),
-        _ => Err("Sort order must be one of: size, name, modified".to_string()),
+        "default" | "size" | "name" | "modified" => Ok(s.to_string()),
+        _ => Err("Sort order must be one of: default, size, name, modified".to_string()),
     }
 }
 
@@ -70,9 +70,9 @@ impl Args {
             ));
         }
 
-        if !["size", "name", "modified"].contains(&self.sort.as_str()) {
+        if !["default", "size", "name", "modified"].contains(&self.sort.as_str()) {
             return Err(SpacemanError::InvalidSortOrder(format!(
-                "Invalid sort order: {}. Must be one of: size, name, modified",
+                "Invalid sort order: {}. Must be one of: default, size, name, modified",
                 self.sort
             )));
         }

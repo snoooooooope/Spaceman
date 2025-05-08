@@ -48,7 +48,7 @@ sm [PATH]
 
 | Option | Description | Default |
 |--------|-------------|---------|
-| `-d, --depth <DEPTH>` | Maximum directory depth to scan | 2 |
+| `-d, --depth <DEPTH>` | Maximum directory depth to scan | 1 |
 | `-s, --sort <SORT>` | Sort order (size, name, modified) | size |
 | `-o, --order <ORDER>` | Sort direction (asc, desc) | desc |
 | `-a, --all` | Show hidden files | false |
@@ -100,7 +100,7 @@ sm /path/to/dir -d 3 -s name -o asc -a -e py
 ## Contributing
 
 Contributions are welcome! Please submit your changes via:
-- [Sourcehut](https://hg.sr.ht/~snoooooooope/Spaceman) (Main repository, Mercurial) as a bookmark.
+- [Sourcehut](https://hg.sr.ht/~snoooooooope/Spaceman) (Main repository, Mercurial) as a [todo](https://todo.sr.ht/~snoooooooope/Spaceman).
 - [GitHub](https://github.com/snoooooooope/Spaceman) (Weekly mirror) as a pull request.
 
 ## License

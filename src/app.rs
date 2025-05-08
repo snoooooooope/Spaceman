@@ -111,6 +111,22 @@ impl App {
 
     fn sort_entries(&mut self) {
         match self.args.sort.as_str() {
+            "default" => {
+                // First sort by type (directories first), then by name
+                self.entries.sort_by(|a, b| {
+                    match (a.is_dir, b.is_dir) {
+                        (true, false) => std::cmp::Ordering::Less,
+                        (false, true) => std::cmp::Ordering::Greater,
+                        _ => {
+                            if self.args.order == "asc" {
+                                a.name.cmp(&b.name)
+                            } else {
+                                b.name.cmp(&a.name)
+                            }
+                        }
+                    }
+                });
+            }
             "size" => {
                 if self.args.order == "asc" {
                     self.entries.sort_by(|a, b| a.size.cmp(&b.size));
@@ -133,7 +149,14 @@ impl App {
                 }
             }
             _ => {
-                self.entries.sort_by(|a, b| b.size.cmp(&a.size));
+                // Fallback to default sorting
+                self.entries.sort_by(|a, b| {
+                    match (a.is_dir, b.is_dir) {
+                        (true, false) => std::cmp::Ordering::Less,
+                        (false, true) => std::cmp::Ordering::Greater,
+                        _ => a.name.cmp(&b.name)
+                    }
+                });
             }
         }
     }
